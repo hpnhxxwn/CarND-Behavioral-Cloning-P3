@@ -18,7 +18,7 @@ My project includes the following files:
 
 ### Requirements
 
-1. Python 3.5+
+1. Anaconda Python 3.5+
 2. Udacity [Carnd-term1 starter kit](https://github.com/udacity/CarND-Term1-Starter-Kit) GPU environment 
 3. Nvidia CUDA 8.0
 4. Nvidia CuDNN 6
