@@ -4,8 +4,9 @@
 
 In this project, I built a Convolutional Neural Network (CNN) based on NVIDIA's [paper](https://arxiv.org/pdf/1604.07316v1.pdf) to clone car driving behavior. It predicts the steering angle by the image taken from the three cameras on the car (center, left and right) to provide different angles. The images are taken from the [simulator](https://github.com/udacity/self-driving-car-sim) and are augmented to account for the imbalanced data and various real world conditions. 
  
- ![Lake track](https://www.youtube.com/watch?v=927dKS0QAiA)
- ![Jungle track](https://youtu.be/ke_9bVAiG50)
+ [Lake track](https://www.youtube.com/watch?v=927dKS0QAiA)
+ 
+ [Jungle track](https://youtu.be/ke_9bVAiG50)
  
 ### Files and how to run
 
