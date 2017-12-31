@@ -16,11 +16,17 @@ from keras.models import load_model
 import h5py
 from keras import __version__ as keras_version
 
+from utils import *
+
 sio = socketio.Server()
 app = Flask(__name__)
 model = None
 prev_image_array = None
 
+MAX_SPEED = 25
+MIN_SPEED = 10
+
+speed_limit = MAX_SPEED
 
 class SimplePIController:
     def __init__(self, Kp, Ki):
@@ -54,13 +60,27 @@ def telemetry(sid, data):
         # The current steering angle of the car
         steering_angle = data["steering_angle"]
         # The current throttle of the car
-        throttle = data["throttle"]
+        throttle = float(data["throttle"])
         # The current speed of the car
-        speed = data["speed"]
+        speed = float(data["speed"])
         # The current image from the center camera of the car
         imgString = data["image"]
+        top_crop_percent=0.35 
+        bottom_crop_percent=0.1
         image = Image.open(BytesIO(base64.b64decode(imgString)))
         image_array = np.asarray(image)
+        image_array = crop(image_array, top_crop_percent, bottom_crop_percent)
+        image_array = resize(image_array)
+        image_array = yuv_transform(image_array)
+        # image = np.array([image])
+        # steering_angle = float(model.predict(image_array[None, :, :, :], batch_size=1))
+        # global speed_limit
+        # if speed > speed_limit:
+        #     speed_limit = MIN_SPEED  # slow down
+        # else:
+        #     speed_limit = MAX_SPEED
+        # throttle = 1.0 - steering_angle**2 - (speed/speed_limit)**2
+        # image_array = np.asarray(image)
         steering_angle = float(model.predict(image_array[None, :, :, :], batch_size=1))
 
         throttle = controller.update(float(speed))
