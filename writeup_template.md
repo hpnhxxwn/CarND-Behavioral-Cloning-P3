@@ -50,7 +50,7 @@ I drove on track 1 and track 2, and collected data by recording the driving expe
 #### How to simulate
 
 Start up [the Udacity self-driving simulator](https://github.com/udacity/self-driving-car-sim), choose a scene and press the Autonomous Mode button.  Then, run the model as follows:
-`python drive.py model.h5 track_1`
+`python drive.py model.h5`
 
 #### To train the model
 
